@@ -1,5 +1,5 @@
-from difficulty_level import DifficultyLevel
-from snake_game import SnakeGame
+from enums.difficulty_level_enum import DifficultyLevel
+from services.snake_game_service import SnakeGame
 
 
 if __name__ == "__main__":

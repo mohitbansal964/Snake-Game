@@ -1,9 +1,9 @@
 import sys
 from typing import List, Tuple
-from difficulty_level import DifficultyLevel
-from snake_direction_enum import SnakeDirection
-from snake_node import SnakeNode
-from grid_status_enum import GridStatus
+from enums.difficulty_level_enum import DifficultyLevel
+from enums.snake_direction_enum import SnakeDirection
+from models.snake_node import SnakeNode
+from enums.grid_status_enum import GridStatus
 from random import randint
 from threading import Timer
 
