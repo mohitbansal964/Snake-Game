@@ -57,6 +57,7 @@ To exit the game, input any other key.
 
 ## Code Structure
 The project is organized into several modules to adhere to the SOLID principles and enhance maintainability.
+```
 Snake-Game/
 │
 ├── enums/
@@ -72,6 +73,7 @@ Snake-Game/
 │
 ├── main.py
 └── README.md
+```
 
 ### Enums
 * **difficulty_level_enum.py**: Defines the DifficultyLevel enum for setting game difficulty.
@@ -96,8 +98,5 @@ Snake-Game/
 Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-
-This `README.md` file ensures that users can easily understand, set up, and contribute to the project. It adheres to best practices for documentation and provides a comprehensive guide to the Snake Game project.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/mohitbansal964/Snake-Game/blob/main/LICENSE) file for details.
 
