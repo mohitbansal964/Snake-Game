@@ -31,7 +31,7 @@ class SnakeGame:
         self.__difficulty_level: DifficultyLevel = DifficultyLevel.Medium
         self.__game_thread: Timer = None
     
-    def set_game_parameters(self, m: int, n: int, difficulty_level: DifficultyLevel = DifficultyLevel.Medium):
+    def set_game_parameters(self, m: int, n: int, difficulty_level: DifficultyLevel = DifficultyLevel.Medium) -> None:
         """
         Sets the game parameters including grid size and difficulty level.
 
@@ -46,28 +46,39 @@ class SnakeGame:
         self.__difficulty_level = difficulty_level
         self.__set_next_food_position()
     
-    def play(self):
+    def play(self) -> None:
         """
         Starts the game and handles user input for snake direction.
         """
         print("Enter snake direction: (A for Left, W for Top, D for Right, S for Bottom): ")
         self.__continue_snake_movement()
         while True:
-            snake_dir_input = input()
+            snake_dir_input = input().strip().upper()
             if not self.__game_thread.is_alive():
                 break
-            match snake_dir_input:
-                case "A" | "a":
-                    self.__snake_dir = SnakeDirection.Left
-                case "W" | "w":
-                    self.__snake_dir = SnakeDirection.Top
-                case "D" | "d":
-                    self.__snake_dir = SnakeDirection.Right
-                case "S" | "s":
-                    self.__snake_dir = SnakeDirection.Bottom
-                case _:
-                    self.__game_thread.join()
-                    break
+            if snake_dir_input in ['A', 'W', 'D', 'S']:
+                self.__snake_dir = self.__map_input_to_direction(snake_dir_input)
+            else:
+                self.__game_thread.join()
+                break
+
+    def __map_input_to_direction(self, input_char: str) -> SnakeDirection:
+        """
+        Maps the input character to the corresponding SnakeDirection.
+
+        Args:
+            input_char (str): The input character representing the direction.
+
+        Returns:
+            SnakeDirection: The corresponding SnakeDirection.
+        """
+        direction_map = {
+            'A': SnakeDirection.Left,
+            'W': SnakeDirection.Top,
+            'D': SnakeDirection.Right,
+            'S': SnakeDirection.Bottom
+        }
+        return direction_map[input_char]
 
     def __continue_snake_movement(self):
         """
@@ -81,7 +92,7 @@ class SnakeGame:
             return
         else:
             if self.__grid[nxt_r][nxt_c] == GridStatus.Food:
-                print("Eaten Food!!")
+                print("Food Eaten!!")
                 self.__set_next_food_position()
                 self.__move_snake_head(nxt_r, nxt_c)
             else:
